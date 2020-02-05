@@ -11,6 +11,7 @@ class R < Formula
   depends_on "libpng"
   depends_on "pcre"
   depends_on "readline"
+  depends_on "tcl-tk"
   depends_on "xz"
   depends_on "openblas" => :optional
   depends_on :java => :optional
@@ -52,8 +53,8 @@ class R < Formula
       "--enable-R-shlib",
       "SED=/usr/bin/sed", # don't remember Homebrew's sed shim
       "--with-tcltk", # SRF - Add tcl-tk support.
-      "--with-tcl-config=/System/Library/Frameworks/Tcl.framework/tclConfig.sh", # SRF - Point to system tcl config file (requires Command Line tools to be installed).
-      "--with-tk-config=/System/Library/Frameworks/Tk.framework/tkConfig.sh" # SRF - Point to system tk config file (requires Command Line tools to be installed).
+      "--with-tcl-config=#{Formula["tcl-tk"].opt_lib}/tclConfig.sh",
+      "--with-tk-config=#{Formula["tcl-tk"].opt_lib}/tkConfig.sh"
     ]
 
     if build.with? "openblas"
